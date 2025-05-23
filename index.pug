@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Hearts
+    link(rel="shortcut icon", href="assets/favicon.png", type="image/x-icon")
+    link(rel="stylesheet", href="style.css")
+
+  body
+    span.corazon(style="--fs: 6px")
+
+    script.
+      const d = document;
+      $body = d.body;
+
+      d.addEventListener('DOMContentLoaded', rain);
+
+      function rain() {
+        let amount = 150,
+          i = 0;
+
+        while (i < amount) {
+          let heart = d.createElement('span'),
+            fontSize = Math.floor(Math.random() * 7) + 3,
+            posX = Math.floor(Math.random() * window.innerWidth),
+            duration = Math.random() * 6 + 1,
+            delay = Math.random() * -20;
+          heart.classList.add('corazon');
+
+          heart.style.setProperty('--fs', fontSize + 'px');
+          heart.style.left = posX + 'px';
+          heart.style.animationDelay = delay + 's';
+          heart.style.animationDuration = duration + 's';
+
+          $body.appendChild(heart);
+          i++;
+        }
+      }
